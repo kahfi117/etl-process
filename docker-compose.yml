@@ -1,0 +1,12 @@
+services:
+  etl:
+    build: .
+    container_name: covid_etl
+    volumes:
+      - .:/app
+    environment:
+      - DUCKDB_PATH=${DUCKDB_PATH}
+      - API_URL=${API_URL}
+    command: ["python", "etl/etl_pipeline.py"]
+    stdin_open: true
+    tty: true
